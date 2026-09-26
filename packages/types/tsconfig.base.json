@@ -16,7 +16,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    " Declaration": true,
+    "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "emitDeclarationOnly": true

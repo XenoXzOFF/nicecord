@@ -3,7 +3,7 @@
  */
 'use client';
 
-import { ReactNode, createContext, useContext, useState } from 'react';
+import { type ReactNode, createContext, useContext, useState } from 'react';
 
 // Simple context pour le thème (dark par défaut — design Discord)
 const ThemeContext = createContext<{ theme: 'dark' }>({ theme: 'dark' });

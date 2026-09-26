@@ -39,5 +39,9 @@ Thumbs.db
 coverage/
 .nyc_output/
 
+# Build artifacts
+.turbo/
+next-env.d.ts
+
 # Claude
 .claude/settings.local.json

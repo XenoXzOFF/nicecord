@@ -15,7 +15,7 @@ router.post('/login', (req, res) => {
 
   // TODO: vérifier les credentials en DB
   const token = jwt.sign({ sub: 'mock' }, process.env.JWT_SECRET!, { expiresIn: '7d' });
-  res.json({ token });
+  return res.json({ token });
 });
 
 router.post('/logout', (_req, res) => {

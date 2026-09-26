@@ -2,7 +2,8 @@
  * Client Socket.IO — wrapper singleton.
  * Inspiré de [[skill-websocket]].
  */
-import { io, Socket } from 'socket.io-client';
+import { io } from 'socket.io-client';
+import type { Socket } from 'socket.io-client';
 import type { SocketEventMap } from '@nicecord/types';
 import { useAuthStore } from '@/store/auth';
 

@@ -65,22 +65,22 @@ export interface MessageCreateDto {
 
 export type SocketEventMap = {
   // client → server (actions)
-  'channel:join': { channelId: string };
-  'channel:leave': { channelId: string };
-  'message:create': MessageCreateDto;
-  'typing:start': { channelId: string };
-  'typing:stop': { channelId: string };
+  'channel:join': (payload: { channelId: string }) => void;
+  'channel:leave': (payload: { channelId: string }) => void;
+  'message:create': (payload: MessageCreateDto) => void;
+  'typing:start': (payload: { channelId: string }) => void;
+  'typing:stop': (payload: { channelId: string }) => void;
 
   // server → client (broadcasts)
-  'message:created': Message;
-  'message:deleted': { id: string; channelId: string };
-  'typing:update': { userId: string; channelId: string; typing: boolean };
-  'presence:update': {
+  'message:created': (payload: Message) => void;
+  'message:deleted': (payload: { id: string; channelId: string }) => void;
+  'typing:update': (payload: { userId: string; channelId: string; typing: boolean }) => void;
+  'presence:update': (payload: {
     userId: string;
     status: 'online' | 'idle' | 'dnd' | 'offline';
     lastSeen?: Date;
-  };
-  'message:error': { nonce?: string; error: string };
+  }) => void;
+  'message:error': (payload: { nonce?: string; error: string }) => void;
 };
 
 export interface TypingEvent {

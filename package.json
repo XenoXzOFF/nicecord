@@ -2,6 +2,7 @@
   "name": "nicecord",
   "version": "0.1.0",
   "private": true,
+"packageManager": "npm@11.11.0",
   "description": "Nicecord — a Discord clone built with an agent-supervised full-stack architecture",
   "scripts": {
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",

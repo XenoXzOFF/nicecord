@@ -1,17 +1,42 @@
 {
+  "extends": "../../packages/types/tsconfig.base.json",
   "compilerOptions": {
-    "extends": "@nicecord/types/tsconfig.base.json",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "outDir": ".next/types",
     "rootDir": ".",
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "ES2022"],
-    "plugins": [{ "name": "next/types-plugin" }]
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ES2022"
+    ],
+    "plugins": [
+      {
+        "name": "next/types-plugin"
+      },
+      {
+        "name": "next"
+      }
+    ],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "../../packages/types/src/**/*.ts"
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".next", "out", "dist"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out",
+    "dist"
+  ]
 }

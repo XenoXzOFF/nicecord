@@ -5,6 +5,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import type { ReactNode } from 'react';
 import { Providers } from '@/providers';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -12,12 +13,15 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Nicecord',
   description: 'A Discord clone built with an agent-supervised architecture.',
+};
+
+export const viewport = {
   themeColor: '#2B2D31',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-bg-default text-text-primary antialiased`}>
