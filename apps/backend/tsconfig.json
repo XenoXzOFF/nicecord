@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "extends": "@nicecord/types/tsconfig.base.json",
+    "outDir": "dist",
+    "rootDir": "src",
+    "module": "CommonJS",
+    "target": "ES2022",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*.ts", "../../packages/types/src/**/*.ts"],
+  "exclude": ["dist", "node_modules", "src/**/*.spec.ts"]
+}

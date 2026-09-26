@@ -1,0 +1,57 @@
+name: nicecord
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: nicecord-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nicecord
+    ports: ["5432:5432"]
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./apps/backend/prisma:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: nicecord-redis
+    restart: unless-stopped
+    ports: ["6379:6379"]
+    command: ["redis-server", "--save", "60 1", "--loglevel warning"]
+
+  backend:
+    build: ./apps/backend
+    container_name: nicecord-backend
+    restart: unless-stopped
+    env_file: .env
+    ports: ["4000:4000"]
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./apps/backend:/app
+      - /app/node_modules
+    command: npm run dev
+
+  frontend:
+    build: ./apps/frontend
+    container_name: nicecord-frontend
+    restart: unless-stopped
+    env_file: .env
+    ports: ["3000:3000"]
+    depends_on:
+      - backend
+    volumes:
+      - ./apps/frontend:/app
+      - /app/node_modules
+    command: npm run dev
+
+volumes:
+  pg_data:

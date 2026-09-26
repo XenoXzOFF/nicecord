@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Guild {
+  id        String    @id @default(cuid())
+  name      String
+  icon      String?
+  ownerId   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Channel {
+  id        String   @id @default(cuid())
+  guildId   String
+  name      String
+  type      ChannelType
+  position  Int      @default(0)
+  parentId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ChannelType {
+  TEXT
+  VOICE
+  CATEGORY
+  ANNOUNCEMENT
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  channelId String
+  authorId  String
+  content   String
+  nonce     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

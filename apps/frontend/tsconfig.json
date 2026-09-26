@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "extends": "@nicecord/types/tsconfig.base.json",
+    "outDir": ".next/types",
+    "rootDir": ".",
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "ES2022"],
+    "plugins": [{ "name": "next/types-plugin" }]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "../../packages/types/src/**/*.ts"
+  ],
+  "exclude": ["node_modules", ".next", "out", "dist"]
+}

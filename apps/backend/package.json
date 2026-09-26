@@ -1,0 +1,50 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nicecord/types": "workspace:*",
+    "@prisma/client": "^5.18.0",
+    "bcryptjs": "^5.1.0",
+    "cors": "^2.8.5",
+    "dayjs": "^2.29.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.0",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^8.0.0",
+    "http-status-codes": "^1.4.0",
+    "jsonwebtoken": "^9.0.2",
+    "socket.io": "^4.7.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cjs": "^2.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.13",
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/node": "^22.5.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.0",
+    "zod-to-ts": "not-installed"
+  },
+  "prisma": {
+    "seed": "ts-node src/seed.ts"
+  }
+}

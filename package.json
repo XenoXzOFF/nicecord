@@ -1,0 +1,40 @@
+{
+  "name": "nicecord",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nicecord — a Discord clone built with an agent-supervised full-stack architecture",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "turbo run dev --filter=frontend",
+    "dev:backend": "turbo run dev --filter=backend",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:frontend": "turbo run test --filter=frontend",
+    "test:backend": "turbo run test --filter=backend",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{js,ts,jsx,tsx,json,md}\"",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "clean": "rm -rf node_modules .turbo dist .next"
+  },
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend",
+    "packages/types"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "concurrently": "^8.2.2",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^3.6.0",
+    "turbo": "^2.0.14"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  }
+}
