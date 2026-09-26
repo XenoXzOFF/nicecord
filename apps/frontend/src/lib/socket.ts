@@ -15,7 +15,7 @@ export function getSocket(): Socket<SocketEventMap> | null {
     const token = useAuthStore.getState().token;
     if (!token) return null;
 
-    socket = io(process.env.NEXT_PUBLIC_BACKEND_URL!, {
+    socket = io(process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:4000', {
       auth: { token },
       transports: ['websocket'],
       reconnection: true,

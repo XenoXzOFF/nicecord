@@ -30,7 +30,7 @@ services:
     build: ./apps/backend
     container_name: nicecord-backend
     restart: unless-stopped
-    env_file: .env
+    env_file: ./apps/backend/.env
     ports: ["4000:4000"]
     depends_on:
       - db
@@ -44,7 +44,7 @@ services:
     build: ./apps/frontend
     container_name: nicecord-frontend
     restart: unless-stopped
-    env_file: .env
+    env_file: ./apps/frontend/.env.local
     ports: ["3000:3000"]
     depends_on:
       - backend

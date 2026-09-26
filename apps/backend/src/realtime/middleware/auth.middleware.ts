@@ -4,6 +4,7 @@
  */
 import jwt from 'jsonwebtoken';
 import type { Socket } from 'socket.io';
+import { config } from '../../config';
 
 export async function authMiddleware(socket: Socket, next: (err?: Error) => void) {
   const token =
@@ -13,7 +14,7 @@ export async function authMiddleware(socket: Socket, next: (err?: Error) => void
   if (!token) return next(new Error('AUTH_ERROR'));
 
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET!) as { sub: string };
+    const payload = jwt.verify(token, config.jwtSecret!) as { sub: string };
     socket.data.userId = payload.sub;
     next();
   } catch {

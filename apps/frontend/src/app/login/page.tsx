@@ -6,6 +6,7 @@
 
 import { useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
+import type { LoginResponse } from '@nicecord/types';
 import { useAuthStore } from '@/store/auth';
 import { login } from '@/lib/auth-api';
 import { cn } from '@/lib/utils';
@@ -27,7 +28,7 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const { token, refreshToken, user } = await login({ email, password });
+      const { token, refreshToken, user }: LoginResponse = await login({ email, password });
       setToken(token);
       setRefresh(refreshToken);
       setUser({

@@ -51,6 +51,11 @@ git clone https://github.com/pcnat/nicecord.git
 cd nicecord
 npm install
 
+# Créer les fichiers .env locaux à partir du modèle
+cp .env.example .env
+cp apps/backend/.env.example apps/backend/.env 2>/dev/null || cp .env.example apps/backend/.env
+cp apps/frontend/.env.example apps/frontend/.env.local 2>/dev/null || cp .env.example apps/frontend/.env.local
+
 # Lancer PostgreSQL + Redis (Docker)
 docker-compose up -d db redis
 

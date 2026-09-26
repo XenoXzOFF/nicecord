@@ -6,16 +6,14 @@ import http from 'node:http';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import dotenv from 'dotenv';
 import express from 'express';
 
+import { config } from './config';
 import { createSocketServer } from './realtime/io';
 import { json, urlencoded } from 'body-parser';
 import { authRouter } from './api/auth/auth.router';
 import { guildRouter } from './api/guilds/guild.router';
 import { channelRouter } from './api/channels/channel.router';
-
-dotenv.config();
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -23,7 +21,7 @@ const httpServer = http.createServer(app);
 // ─── Middleware ──────────────────────────────
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL ?? 'http://localhost:3000',
+    origin: config.frontendUrl,
     credentials: true,
   })
 );
@@ -43,9 +41,8 @@ app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 // ─── WebSocket ───────────────────────────────
 const io = createSocketServer(httpServer);
 
-const PORT = process.env.PORT ?? 4000;
-httpServer.listen(PORT, () => {
-  console.log(`[backend] HTTP + Socket.IO listening on :${PORT}`);
+httpServer.listen(config.port, () => {
+  console.log(`[backend] HTTP + Socket.IO listening on :${config.port}`);
 });
 
 export { app, io };

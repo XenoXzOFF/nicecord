@@ -1,6 +1,9 @@
 /**
  * Client API d'authentification — wrapper Fetch.
  * Inspiré de [[skill-websocket]] pour la gestion des tokens.
+ *
+ * Types alignés sur le contrat d'API défini dans `docs/api-contracts/auth.md`
+ * et importés depuis le package partagé `@nicecord/types`.
  */
 import type {
   LoginPayload,
@@ -23,6 +26,11 @@ async function handleResponse<T>(res: Response): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+/**
+ * POST /api/v1/auth/login
+ * Retourne { token, refreshToken, user } sur succès (200).
+ * Lève une erreur sur 400 (validation) ou 401 (credentials invalides).
+ */
 export async function login(payload: LoginPayload): Promise<LoginResponse> {
   const res = await fetch(`${API_BASE}/auth/login`, {
     method: 'POST',
@@ -34,6 +42,10 @@ export async function login(payload: LoginPayload): Promise<LoginResponse> {
   return handleResponse<LoginResponse>(res);
 }
 
+/**
+ * POST /api/v1/auth/refresh
+ * Échange un refresh-token contre un nouveau token + refresh-token.
+ */
 export async function refresh(payload: RefreshPayload): Promise<RefreshResponse> {
   const res = await fetch(`${API_BASE}/auth/refresh`, {
     method: 'POST',
@@ -45,6 +57,10 @@ export async function refresh(payload: RefreshPayload): Promise<RefreshResponse>
   return handleResponse<RefreshResponse>(res);
 }
 
+/**
+ * POST /api/v1/auth/logout
+ * Invalide le refresh-token (client-side seulement pour l'instant).
+ */
 export async function logout(payload?: LogoutPayload): Promise<LogoutResponse> {
   const res = await fetch(`${API_BASE}/auth/logout`, {
     method: 'POST',

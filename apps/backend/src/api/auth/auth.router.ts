@@ -4,6 +4,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import z from 'zod';
+import { config } from '../../config';
 import type { AuthUser, LoginPayload, LoginResponse, RefreshPayload, RefreshResponse, LogoutPayload, LogoutResponse } from '@nicecord/types';
 
 const router = Router();
@@ -45,8 +46,8 @@ const JWT_ACCESS_EXPIRES = '15m';
 const JWT_REFRESH_EXPIRES = '7d';
 
 function generateTokens(sub: string): { token: string; refreshToken: string } {
-  const token = jwt.sign({ sub }, process.env.JWT_SECRET!, { expiresIn: JWT_ACCESS_EXPIRES });
-  const refreshToken = jwt.sign({ sub }, process.env.JWT_SECRET!, { expiresIn: JWT_REFRESH_EXPIRES });
+  const token = jwt.sign({ sub }, config.jwtSecret!, { expiresIn: JWT_ACCESS_EXPIRES });
+  const refreshToken = jwt.sign({ sub }, config.jwtSecret!, { expiresIn: JWT_REFRESH_EXPIRES });
   return { token, refreshToken };
 }
 
@@ -84,7 +85,7 @@ router.post('/refresh', (req, res) => {
   const body: RefreshPayload = parse.data.body;
 
   try {
-    const payload = jwt.verify(body.refreshToken, process.env.JWT_SECRET!) as { sub: string };
+    const payload = jwt.verify(body.refreshToken, config.jwtSecret!) as { sub: string };
     const { token, refreshToken } = generateTokens(payload.sub);
     const response: RefreshResponse = { token, refreshToken };
     return res.json(response);

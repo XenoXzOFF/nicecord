@@ -6,6 +6,7 @@ import { Server, Socket } from 'socket.io';
 import type { Server as HttpServer } from 'node:http';
 import type { SocketEventMap } from '@nicecord/types';
 
+import { config } from '../config';
 import { authMiddleware } from './middleware/auth.middleware';
 import { registerMessageHandlers } from './handlers/message.handler';
 import { registerPresenceHandlers } from './handlers/presence.handler';
@@ -18,7 +19,7 @@ export function createSocketServer(httpServer: HttpServer): Server<SocketEventMa
   const io = new Server<SocketEventMap>(httpServer, {
     path: '/socket.io',
     cors: {
-      origin: process.env.FRONTEND_URL,
+      origin: config.frontendUrl,
       credentials: true,
     },
   });
