@@ -1,0 +1,12 @@
+{
+  "env": {
+    "NEXT_PUBLIC_BACKEND_URL": "http://localhost:4000",
+    "NEXT_PUBLIC_APP_NAME": "Nicecord",
+    "DATABASE_URL": "postgresql://postgres:postgres@localhost:5432/nicecord"
+  },
+  "mcpServers": {},
+  "codebaseIndex": {
+    "enabled": true,
+    "excludePatterns": ["node_modules", ".git", "dist", ".next", "build"]
+  }
+}

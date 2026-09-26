@@ -12,16 +12,16 @@
     "typecheck": "next typecheck"
   },
   "dependencies": {
-    "@nicecord/types": "workspace:*",
+    "@nicecord/types": "file:../packages/types",
     "@radix-ui/react-icons": "^1.3.0",
-    "clsx": "^2.1.3",
+    "clsx": "^2.1.0",
     "framer-motion": "^11.0.0",
-    "lucide-react": "^0.436.0",
+    "lucide-react": "^1.0.0",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "socket.io-client": "^4.7.5",
-    "tailwind-merge": "^2.5.2",
+    "tailwind-merge": "^3.7.0",
     "zustand": "^4.5.5"
   },
   "devDependencies": {

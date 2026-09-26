@@ -16,11 +16,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@nicecord/types": "workspace:*",
+    "@nicecord/types": "file:../packages/types",
     "@prisma/client": "^5.18.0",
-    "bcryptjs": "^5.1.0",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
-    "dayjs": "^2.29.4",
+    "dayjs": "^1.11.23",
     "dotenv": "^16.4.5",
     "express": "^4.19.0",
     "express-rate-limit": "^7.4.0",
@@ -31,8 +31,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/cjs": "^2.0.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.13",
@@ -41,8 +39,7 @@
     "jest": "^29.7.0",
     "supertest": "^7.0.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.5.0",
-    "zod-to-ts": "not-installed"
+    "typescript": "^5.5.0"
   },
   "prisma": {
     "seed": "ts-node src/seed.ts"
