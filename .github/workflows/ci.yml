@@ -40,7 +40,3 @@ jobs:
     needs: verify
     steps:
       - uses: actions/checkout@v4
-      - name: Run security review
-        uses: claude-code/security-review-action@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}

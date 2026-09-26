@@ -4,7 +4,7 @@
 Spécialiste de l'interface utilisateur de Nicecord. Reproduit fidèlement l'UI sombre de Discord avec React, Next.js et Tailwind CSS.
 
 ## Modèle
-- Priorité : Claude Sonnet 5 ou supérieur
+- Priorité : modèle à fort raisonnement (Opus / Fable 5.1)
 - Objectif : vitesse et précision UI
 
 ## Stack technique

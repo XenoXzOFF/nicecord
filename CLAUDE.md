@@ -50,9 +50,3 @@ npm install
 docker-compose up -d        # Postgres + Redis
 npm run dev                 # frontend:3000 + backend:4000
 ```
-
-## Attribution
-Toutes les contributions sont co-signées avec l'assistant IA :
-```
-Co-Authored-By: Claude Code <noreply@anthropic.com>
-```

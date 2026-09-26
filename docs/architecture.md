@@ -7,14 +7,13 @@
                     │             Navigateur             │
   ┌──────────┐      │              (React)               │
   │ Éditeur  │◀────▶│  Frontend: Next.js + Tailwind      │
-  │ Claude   │      │  Socket.IO client                  │
   └──────────┘      │                                    │
                     ├─────────────── Socket.IO ───────────┤
                     │              WebSocket              │
                     │                                    │
   ┌──────────┐      │  Backend: Node.js / Express        │
   │ Éditeur  │◀────▶│  Socket.IO server                  │
-  │ Claude   │      │  REST API                            │
+  └──────────┘      │  REST API                            │
                     │                                    │
                     │  PostgreSQL ◀─ Prisma ORM           │
                     │  Redis    ◀─ rate-limit + presence │
