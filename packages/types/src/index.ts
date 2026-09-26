@@ -17,6 +17,41 @@ export interface User {
   createdAt: Date;
 }
 
+/** Public user view returned by the auth endpoints (subset of User). */
+export interface AuthUser {
+  id: string;
+  username: string;
+  avatar: string | null;
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  token: string;
+  refreshToken: string;
+  user: AuthUser;
+}
+
+export interface RefreshPayload {
+  refreshToken: string;
+}
+
+export interface RefreshResponse {
+  token: string;
+  refreshToken: string;
+}
+
+export interface LogoutPayload {
+  refreshToken?: string;
+}
+
+export interface LogoutResponse {
+  ok: boolean;
+}
+
 export interface Guild {
   id: string;
   name: string;

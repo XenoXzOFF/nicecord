@@ -13,6 +13,8 @@ import { cn } from '@/lib/utils';
 export default function LoginPage() {
   const router = useRouter();
   const setToken = useAuthStore((s) => s.setToken);
+  const setRefresh = useAuthStore((s) => s.setRefresh);
+  const setUser = useAuthStore((s) => s.setUser);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,8 +27,14 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const { token } = await login({ email, password });
+      const { token, refreshToken, user } = await login({ email, password });
       setToken(token);
+      setRefresh(refreshToken);
+      setUser({
+        id: user.id,
+        username: user.username,
+        avatar: user.avatar,
+      });
       router.replace('/channels/@me');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Échec de la connexion');
